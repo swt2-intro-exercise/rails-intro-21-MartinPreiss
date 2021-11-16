@@ -7,9 +7,14 @@ describe "author index page", type: :feature do
      visit authors_path
     end
 
-    it "Author index page should render" do
+    it "Author index page should list name and homepage of all authors" do
         @alan = FactoryBot.create :author
         visit authors_path
         expect(page).to have_text('Listing Authors')
+        expect(page).to have_css('table')
+        expect(page).to have_text('Name')
+        expect(page).to have_text('Homepage')
+        expect(page).to have_text('Alan Turing')
+        expect(page).to have_text('http://wikipedia.de/Alan_Turing')
        end
  end
