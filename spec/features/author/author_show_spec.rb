@@ -10,4 +10,6 @@ describe "author page", type: :feature do
     expect(page).to have_text('Alan Turing')
     expect(page).to have_text('http://wikipedia.de/Alan_Turing')
     end
+
+    
  end

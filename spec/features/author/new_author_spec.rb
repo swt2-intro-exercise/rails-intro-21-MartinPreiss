@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'capybara/rspec'
 
 describe "New author page", type: :feature do
    it "should exist at 'new_author_path' and render withour error" do
@@ -14,4 +15,15 @@ describe "New author page", type: :feature do
     expect(page).to have_field('author[homepage]')
     end
 
+    it "New author page should show validation errors" do
+      visit new_author_path
+
+      fill_in 'author[first_name]', :with => 'Max'
+      fill_in 'author[homepage]', :with => 'www.beispiel.com'
+      
+      click_button 'Save Author'
+
+      expect(page).to have_text("1 error")
+      expect(page).to have_text("Last name can't be blank")
+  end
  end
