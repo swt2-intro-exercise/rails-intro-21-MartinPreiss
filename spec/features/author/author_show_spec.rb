@@ -11,5 +11,12 @@ describe "author page", type: :feature do
     expect(page).to have_text('http://wikipedia.de/Alan_Turing')
     end
 
+    it "Author index page should link to edit author page" do
+     # https://guides.rubyonrails.org/routing.html#path-and-url-helpers
+     @alan = FactoryBot.create :author
+     visit author_path(@alan)
     
+     expect(page).to have_link 'Edit Author', href: edit_author_path(@alan)
+    end
+
  end
