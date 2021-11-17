@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'capybara/rspec'
 
 RSpec.describe "papers/new", type: :view do
   before(:each) do
@@ -21,4 +22,5 @@ RSpec.describe "papers/new", type: :view do
       assert_select "input[name=?]", "paper[year]"
     end
   end
+
 end
