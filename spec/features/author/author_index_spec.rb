@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'capybara/rspec'
 
 describe "author index page", type: :feature do
    it "Author index page should render" do
@@ -29,11 +30,31 @@ describe "author index page", type: :feature do
         visit authors_path
         expect(page).to have_link 'Show', href: author_path(@alan)
        end
+
     it "index page should link to edit author page" do
-        # https://guides.rubyonrails.org/routing.html#path-and-url-helpers
         @alan = FactoryBot.create :author
-        visit author_path(@alan)
+        visit authors_path
        
         expect(page).to have_link 'Edit', href: edit_author_path(@alan)
        end
+
+    it "Author index page should have a link to delete an author" do
+        @alan = FactoryBot.create :author
+        visit authors_path
+       
+        expect(page).to have_link 'Delete', href: author_path(@alan)
+       end
+    #needs to install capybara-webkit
+    # it "link to delete an author should delete" do
+    #     @alan = FactoryBot.create :author
+    #     visit authors_path
+    #     startCount = Author.count
+
+    #     accept_confirm do
+    #         click_link('Delete')
+    #       end
+        
+    #     expect(Author.count).to be < startCount
+    #     expect(page).to_not have_text("Alan")
+    #    end
  end
