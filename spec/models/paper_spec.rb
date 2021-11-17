@@ -12,4 +12,9 @@ it"Paper should not validate without title"do
   paper = Paper.new(title:nil, venue:'Mind 49: 433-460', year:1950 )
     expect(paper).to_not be_valid   
 end
+
+it "Paper should have and belong to many authors" do
+  paper = Paper.new(title:nil, venue:'Mind 49: 433-460', year:1950 )
+  expect(paper.authors).to eq []
+end
 end
